@@ -223,6 +223,8 @@ h3 { font-size: 1.18rem; margin-bottom: .45rem; color: inherit; }
 .info-panel div { padding: .9rem 0; border-bottom: 1px solid rgba(43, 22, 13, .12); }
 .info-panel dt { font-weight: 800; }
 .info-panel dd { margin: .2rem 0 0; }
+.info-panel a { color: var(--accent-dark); font-weight: 800; }
+.note { color: #8a6b58; font-size: .88em; }
 .info-panel .button.secondary,
 .promo-card .button.secondary,
 .menu-card .button.secondary {
