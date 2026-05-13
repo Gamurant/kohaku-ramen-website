@@ -1,40 +1,32 @@
-# Kohaku Ramen — Lotte Mart Tân Bình MVP Website
+# Mi Cay Chaebol Website
 
-Website MVP tĩnh, phù hợp để deploy miễn phí bằng GitHub Pages.
+Website tĩnh dùng cho GitHub Pages của Mi Cay Chaebol.
 
 ## Cấu trúc
 
-- `index.html` — nội dung website
-- `style.css` — giao diện
+- `index.html`: nội dung website
+- `style.css`: giao diện responsive
+- `assets/`: logo, mascot và ảnh món ăn
+- `CNAME`: domain `micaychaebol.com`
 
-## Những chỗ cần cập nhật bằng thông tin thật
+## Nội dung hiện tại
 
-1. Giá món trong phần **Menu MVP**
-2. Giờ mở cửa
-3. Số điện thoại/Zalo
-4. Link Facebook
-5. Khuyến mãi hiện tại
-6. Ảnh thật của món/quán nếu có
+- Hero brand Mi Cay Chaebol với ảnh combo.
+- Concept K-drama fast-casual.
+- Menu lõi: mì cay, gà rán, side, nước.
+- Cấp cay Lv.0 - Lv.4.
+- Combo Tập 1, Combo Plot Twist, Combo Gia Tộc.
+- Thông tin khu vực: khu Khang An, đối diện Sky 9, Phú Hữu.
 
-## Deploy lên GitHub Pages
+## Chỗ cần cập nhật khi chốt vận hành
 
-1. Tạo repository mới trên GitHub, ví dụ: `kohaku-ramen-website`
-2. Upload 2 file `index.html` và `style.css`
-3. Vào **Settings → Pages**
-4. Ở **Build and deployment**, chọn:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/root`
-5. Bấm Save
-6. Đợi 1–3 phút, GitHub sẽ tạo link dạng:
-   `https://USERNAME.github.io/kohaku-ramen-website/`
+1. Giá chính thức sau khi test cost món.
+2. Ngày soft opening và grand opening.
+3. Link Facebook/TikTok thật.
+4. Số điện thoại/Zalo.
+5. Địa chỉ Google Maps chính xác khi đã tạo listing.
+6. Ảnh mặt tiền, không gian quán và menu board thật.
 
-## Prompt cập nhật website bằng AI
+## Deploy GitHub Pages
 
-Ví dụ:
-
-> Cập nhật website Kohaku: thêm món Spicy Miso Ramen giá 89k, mô tả cay vừa, topping trứng và thịt xá xíu.
-
-> Đổi giờ mở cửa thành 9:00–22:00 hằng ngày.
-
-> Thêm khuyến mãi cuối tuần: mua 2 tô ramen tặng 1 phần gyoza.
+Repo này có thể deploy trực tiếp từ branch chính bằng GitHub Pages vì chỉ dùng HTML/CSS/ảnh tĩnh.
