@@ -443,7 +443,7 @@ h3 {
 }
 
 .launch-section {
-  background: url("assets/mascot-spicy-emotion.png") right 8% center / min(42vw, 500px) no-repeat, var(--ink);
+  background: url("assets/mascot-spicy-emotion.png?v=20260514b") right 8% center / min(42vw, 500px) no-repeat, var(--ink);
   color: #fff;
 }
 
