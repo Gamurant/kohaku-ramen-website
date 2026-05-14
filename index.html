@@ -128,8 +128,8 @@
 
     /* ── Spice ── */
     .spice-sec { background: var(--ink); }
-    .spice-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .slvs { display: flex; flex-direction: column; gap: .7rem; }
+    .spice-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: clamp(2rem, 4vw, 3.25rem); align-items: start; }
+    .slvs { display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
     .slv { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; background: var(--ink3); border: 1.5px solid var(--ln); border-radius: 12px; cursor: pointer; transition: all .22s; }
     .slv.on { border-color: var(--red); background: rgba(212,41,26,.08); box-shadow: 0 0 0 3px rgba(212,41,26,.12); }
     .slv:hover:not(.on) { border-color: var(--ln2); background: rgba(245,240,232,.04); }
@@ -137,16 +137,16 @@
     .slv.on .slv-badge { background: var(--red); color: #fff; }
     .slv-body { flex: 1; min-width: 0; }
     .slv-name { font-weight: 700; font-size: .9rem; line-height: 1.2; }
-    .slv-dots { display: flex; gap: 4px; margin-top: .35rem; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ln2); flex-shrink: 0; transition: background .2s, box-shadow .2s; }
-    .dot.on { background: var(--red); box-shadow: 0 0 6px rgba(212,41,26,.5); }
-    .slv-desc { font-size: .78rem; color: var(--cr2); display: none; margin-top: .35rem; line-height: 1.5; }
+    .slv-heat { display: flex; align-items: center; gap: 5px; margin-top: .42rem; }
+    .pepper { width: 15px; height: 15px; flex-shrink: 0; background: rgba(245,240,232,.24); opacity: .75; transition: background .2s, opacity .2s, filter .2s, transform .2s; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M22.9 3.6c.5 2.9-.5 5.1-2.8 6.4 3.6.9 6 3.6 6 7.1 0 6-5.9 10.8-14.6 12.6-2 .4-3.8-1.3-3.4-3.3 1.6-8.8 6.6-14.8 12.5-14.8.2 0 .5 0 .7.1 1.3-1 1.7-2.5 1.4-4.7-.1-.8.2-1.6.9-2l4.2-2.4c.8-.4 1.7.1 1.7 1v3.5c0 .7-.4 1.3-1 1.6l-2.3 1.1c-.5.2-1.1 0-1.3-.5-.2-.5 0-1.1.5-1.3l2-1V4.8l-2.5 1.4c-.2.1-.2.3-.2.5Z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M22.9 3.6c.5 2.9-.5 5.1-2.8 6.4 3.6.9 6 3.6 6 7.1 0 6-5.9 10.8-14.6 12.6-2 .4-3.8-1.3-3.4-3.3 1.6-8.8 6.6-14.8 12.5-14.8.2 0 .5 0 .7.1 1.3-1 1.7-2.5 1.4-4.7-.1-.8.2-1.6.9-2l4.2-2.4c.8-.4 1.7.1 1.7 1v3.5c0 .7-.4 1.3-1 1.6l-2.3 1.1c-.5.2-1.1 0-1.3-.5-.2-.5 0-1.1.5-1.3l2-1V4.8l-2.5 1.4c-.2.1-.2.3-.2.5Z'/%3E%3C/svg%3E") center / contain no-repeat; }
+    .pepper.on { background: var(--red); opacity: 1; filter: drop-shadow(0 0 5px rgba(212,41,26,.6)); transform: translateY(-1px); }
+    .slv-desc { font-size: .78rem; color: var(--cr2); display: none; margin-top: .45rem; line-height: 1.5; }
     .slv.on .slv-desc { display: block; }
-    .spice-vis { position: sticky; top: 6rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-    .spice-mimg-wrap { width: min(390px, 100%); aspect-ratio: 1 / 1; background: #fff; border: 2px solid rgba(201,168,76,.5); border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 8px rgba(212,41,26,.08); }
+    .spice-vis { position: sticky; top: 5.75rem; justify-self: end; align-self: start; width: 100%; max-width: 360px; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .spice-mimg-wrap { width: min(340px, 100%); aspect-ratio: 1 / 1; background: #fff; border: 2px solid rgba(201,168,76,.5); border-radius: 24px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 8px rgba(212,41,26,.08); }
     .spice-mimg { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: opacity .22s ease, transform .38s cubic-bezier(.22,1,.36,1), filter .38s ease; }
     .spice-mimg.changing { opacity: 0; transform: scale(.92) rotate(-3deg); filter: blur(2px); }
-    .spice-qbox { background: var(--ink3); border: 1px solid var(--ln); border-radius: 16px; padding: 1.4rem; text-align: center; max-width: 310px; }
+    .spice-qbox { width: 100%; background: var(--ink3); border: 1px solid var(--ln); border-radius: 16px; padding: 1.15rem 1.25rem; text-align: center; max-width: 340px; }
     .spice-q { font-size: .88rem; color: var(--cr2); line-height: 1.65; font-style: italic; }
     .spice-ql { display: block; margin-top: .6rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 900; text-transform: uppercase; color: var(--red); font-style: normal; }
 
@@ -214,7 +214,9 @@
       .hero-mascot-reel { right: -24px; bottom: -36px; width: 170px; }
       .mgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .combo-layout { gap: 2.6rem; }
-      .spice-vis { position: static; }
+      .spice-layout { gap: 2rem; }
+      .spice-vis { position: static; justify-self: center; max-width: 360px; }
+      .spice-mimg-wrap { width: min(320px, 100%); }
       h1.htitle { font-size: 5.8rem; }
       .stitle { font-size: 2.6rem; }
       .mascot-q { font-size: 2.25rem; }
@@ -242,7 +244,7 @@
       .mgrid { grid-template-columns: 1fr; }
       .cc { grid-template-columns: auto 1fr; }
       .cprice { grid-column: 2; }
-      .spice-mimg { width: 220px; }
+      .spice-mimg-wrap { width: min(260px, 100%); }
       .mascot-layout { gap: 1.8rem; }
       .mascot-img-big { width: 230px; }
       .mascot-q { font-size: 1.9rem; }
@@ -457,8 +459,8 @@
           <div class="slv-badge">Lv.0</div>
           <div class="slv-body">
             <div class="slv-name">Người Bình Tĩnh</div>
-            <div class="slv-dots">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <div class="slv-heat" aria-label="0 trên 4 trái ớt cay">
+              <span class="pepper"></span><span class="pepper"></span><span class="pepper"></span><span class="pepper"></span>
             </div>
             <div class="slv-desc">Cậu Chủ không phán xét. Nước dùng đậm đà mà không cay chút nào.</div>
           </div>
@@ -468,8 +470,8 @@
           <div class="slv-badge">Lv.1</div>
           <div class="slv-body">
             <div class="slv-name">Mới Vào Tập 1</div>
-            <div class="slv-dots">
-              <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <div class="slv-heat" aria-label="1 trên 4 trái ớt cay">
+              <span class="pepper on"></span><span class="pepper"></span><span class="pepper"></span><span class="pepper"></span>
             </div>
             <div class="slv-desc">Bắt đầu nhẹ, vẫn còn kiểm soát được tình hình. Lý tưởng cho lần đầu thử.</div>
           </div>
@@ -479,8 +481,8 @@
           <div class="slv-badge">Lv.2</div>
           <div class="slv-body">
             <div class="slv-name">Bắt Đầu Drama</div>
-            <div class="slv-dots">
-              <span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+            <div class="slv-heat" aria-label="2 trên 4 trái ớt cay">
+              <span class="pepper on"></span><span class="pepper on"></span><span class="pepper"></span><span class="pepper"></span>
             </div>
             <div class="slv-desc">Mức Cậu Chủ khuyên thử trước. Cay vừa, đổ mồ hôi nhẹ. Phải uống trà.</div>
           </div>
@@ -490,8 +492,8 @@
           <div class="slv-badge">Lv.3</div>
           <div class="slv-body">
             <div class="slv-name">Gia Tộc Phản Đối</div>
-            <div class="slv-dots">
-              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+            <div class="slv-heat" aria-label="3 trên 4 trái ớt cay">
+              <span class="pepper on"></span><span class="pepper on"></span><span class="pepper on"></span><span class="pepper"></span>
             </div>
             <div class="slv-desc">Đã có người cần trà tắc gấp. Mặt đỏ, mồ hôi nhiều. Không dừng được.</div>
           </div>
@@ -501,8 +503,8 @@
           <div class="slv-badge">Lv.4</div>
           <div class="slv-body">
             <div class="slv-name">Mất Quyền Thừa Kế</div>
-            <div class="slv-dots">
-              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            <div class="slv-heat" aria-label="4 trên 4 trái ớt cay">
+              <span class="pepper on"></span><span class="pepper on"></span><span class="pepper on"></span><span class="pepper on"></span>
             </div>
             <div class="slv-desc">Cậu Chủ đã thử. Cậu Chủ sẽ không thử lại. Bạn đã được cảnh báo nghiêm túc.</div>
           </div>
