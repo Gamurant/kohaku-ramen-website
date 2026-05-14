@@ -204,7 +204,6 @@
       .hero,
       .mfeat,
       .combo-layout,
-      .spice-layout,
       .mascot-layout,
       .loc-layout,
       .ft-inner { grid-template-columns: 1fr; }
@@ -214,9 +213,9 @@
       .hero-mascot-reel { right: -24px; bottom: -36px; width: 170px; }
       .mgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .combo-layout { gap: 2.6rem; }
-      .spice-layout { gap: 2rem; }
-      .spice-vis { position: static; justify-self: center; max-width: 360px; }
-      .spice-mimg-wrap { width: min(320px, 100%); }
+      .spice-layout { grid-template-columns: minmax(0, 1fr) minmax(240px, 320px); gap: 2rem; }
+      .spice-vis { position: sticky; justify-self: end; max-width: 320px; }
+      .spice-mimg-wrap { width: min(300px, 100%); }
       h1.htitle { font-size: 5.8rem; }
       .stitle { font-size: 2.6rem; }
       .mascot-q { font-size: 2.25rem; }
@@ -244,7 +243,15 @@
       .mgrid { grid-template-columns: 1fr; }
       .cc { grid-template-columns: auto 1fr; }
       .cprice { grid-column: 2; }
-      .spice-mimg-wrap { width: min(260px, 100%); }
+      .spice-layout { grid-template-columns: minmax(0, 1fr) clamp(104px, 30vw, 132px); gap: .75rem; align-items: start; }
+      .slv { gap: .65rem; padding: .85rem .75rem; }
+      .slv-badge { min-width: 44px; font-size: .72rem; padding: .24rem .45rem; }
+      .slv-name { font-size: .82rem; }
+      .slv-desc { font-size: .72rem; }
+      .pepper { width: 13px; height: 13px; }
+      .spice-vis { position: sticky; top: 5.5rem; justify-self: end; max-width: 132px; gap: .6rem; }
+      .spice-mimg-wrap { width: 100%; border-radius: 18px; box-shadow: 0 14px 34px rgba(0,0,0,.42), 0 0 0 5px rgba(212,41,26,.08); }
+      .spice-qbox { display: none; }
       .mascot-layout { gap: 1.8rem; }
       .mascot-img-big { width: 230px; }
       .mascot-q { font-size: 1.9rem; }
