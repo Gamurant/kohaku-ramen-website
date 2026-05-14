@@ -143,7 +143,9 @@
     .slv-desc { font-size: .78rem; color: var(--cr2); display: none; margin-top: .35rem; line-height: 1.5; }
     .slv.on .slv-desc { display: block; }
     .spice-vis { position: sticky; top: 6rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-    .spice-mimg { width: 270px; transition: filter .5s ease; }
+    .spice-mimg-wrap { width: min(390px, 100%); aspect-ratio: 1 / 1; background: #fff; border: 2px solid rgba(201,168,76,.5); border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 8px rgba(212,41,26,.08); }
+    .spice-mimg { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: opacity .22s ease, transform .38s cubic-bezier(.22,1,.36,1), filter .38s ease; }
+    .spice-mimg.changing { opacity: 0; transform: scale(.92) rotate(-3deg); filter: blur(2px); }
     .spice-qbox { background: var(--ink3); border: 1px solid var(--ln); border-radius: 16px; padding: 1.4rem; text-align: center; max-width: 310px; }
     .spice-q { font-size: .88rem; color: var(--cr2); line-height: 1.65; font-style: italic; }
     .spice-ql { display: block; margin-top: .6rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 900; text-transform: uppercase; color: var(--red); font-style: normal; }
@@ -509,7 +511,9 @@
       </div>
 
       <div class="spice-vis">
-        <img class="spice-mimg" id="spiceMascot" src="assets/mascot-spicy-emotion.png" alt="Phản ứng cay của Cậu Chủ">
+        <div class="spice-mimg-wrap">
+          <img class="spice-mimg" id="spiceMascot" src="assets/spice-lv0-calm.jpg" alt="Phản ứng Lv.0 của Cậu Chủ Cay">
+        </div>
         <div class="spice-qbox">
           <p class="spice-q" id="spiceQ">"Không cay cũng được. Cậu Chủ không phán xét gì đâu."</p>
           <strong class="spice-ql" id="spiceLabel">Lv.0 — Người Bình Tĩnh</strong>
@@ -664,26 +668,38 @@
 
   // Spice level selector
   const spiceData = [
-    { q: '"Không cay cũng được. Cậu Chủ không phán xét gì đâu."',             lbl: 'Lv.0 — Người Bình Tĩnh',      f: 'grayscale(.75) brightness(.5)' },
-    { q: '"Đây mới chỉ là trailer thôi. Tiếp tục không?"',                    lbl: 'Lv.1 — Mới Vào Tập 1',        f: 'grayscale(.45) brightness(.65) saturate(1.3)' },
-    { q: '"Bây giờ mới vào được tập chính rồi đó."',                          lbl: 'Lv.2 — Bắt Đầu Drama',        f: 'grayscale(.1) brightness(.82) saturate(1.5)' },
-    { q: '"Drama đang leo thang. Cần thêm trà tắc chưa?"',                    lbl: 'Lv.3 — Gia Tộc Phản Đối',     f: 'brightness(.95) saturate(1.65)' },
-    { q: '"Series finale. Không có hậu truyện. Bạn đã được cảnh báo."',       lbl: 'Lv.4 — Mất Quyền Thừa Kế',   f: 'brightness(1.05) saturate(1.9) drop-shadow(0 0 14px rgba(212,41,26,.7))' },
+    { q: '"Không cay cũng được. Cậu Chủ không phán xét gì đâu."',       lbl: 'Lv.0 — Người Bình Tĩnh',    img: 'assets/spice-lv0-calm.jpg',  alt: 'Cậu Chủ Cay bình tĩnh với Lv.0' },
+    { q: '"Đây mới chỉ là trailer thôi. Tiếp tục không?"',              lbl: 'Lv.1 — Mới Vào Tập 1',      img: 'assets/spice-lv1-blush.jpg', alt: 'Cậu Chủ Cay hơi đỏ mặt với Lv.1' },
+    { q: '"Bây giờ mới vào được tập chính rồi đó."',                    lbl: 'Lv.2 — Bắt Đầu Drama',      img: 'assets/spice-lv2-sweat.jpg', alt: 'Cậu Chủ Cay bắt đầu đổ mồ hôi với Lv.2' },
+    { q: '"Drama đang leo thang. Cần thêm trà tắc chưa?"',              lbl: 'Lv.3 — Gia Tộc Phản Đối',   img: 'assets/spice-lv3-tears.jpg', alt: 'Cậu Chủ Cay cay chảy nước mắt với Lv.3' },
+    { q: '"Series finale. Không có hậu truyện. Bạn đã được cảnh báo."', lbl: 'Lv.4 — Mất Quyền Thừa Kế', img: 'assets/spice-lv4-fire.jpg',  alt: 'Cậu Chủ Cay bốc hỏa với Lv.4' },
   ];
 
   const mascotImg = document.getElementById('spiceMascot');
   const quoteEl   = document.getElementById('spiceQ');
   const labelEl   = document.getElementById('spiceLabel');
-  mascotImg.style.filter = spiceData[0].f;
+
+  function setSpiceLevel(lv) {
+    const data = spiceData[lv];
+    mascotImg.classList.add('changing');
+    window.setTimeout(() => {
+      mascotImg.src = data.img;
+      mascotImg.alt = data.alt;
+      quoteEl.textContent = data.q;
+      labelEl.textContent = data.lbl;
+      mascotImg.onload = () => mascotImg.classList.remove('changing');
+      window.setTimeout(() => mascotImg.classList.remove('changing'), 360);
+    }, 160);
+  }
+
+  // Preload all spice reaction images for instant switching
+  spiceData.forEach(({img}) => { const pre = new Image(); pre.src = img; });
 
   document.querySelectorAll('.slv').forEach(el => {
     el.addEventListener('click', () => {
       document.querySelectorAll('.slv').forEach(i => i.classList.remove('on'));
       el.classList.add('on');
-      const lv = +el.dataset.lv;
-      mascotImg.style.filter = spiceData[lv].f;
-      quoteEl.textContent   = spiceData[lv].q;
-      labelEl.textContent   = spiceData[lv].lbl;
+      setSpiceLevel(+el.dataset.lv);
     });
   });
 
